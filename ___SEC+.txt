@@ -156,9 +156,9 @@ ping 22.22.22.223
 VMWare > NetOps-PH Settings > NetAdapter (2, 3, & 4) > Advance > MAC Address
 
 | NetAdapter   | MAC Address      | VM Interface |
-| NetAdapter 2 | ___.___.___.___  | ens___       |
-| NetAdapter 3 | ___.___.___.___  | ens___       |
-| NetAdapter 4 | ___.___.___.___  | ens___       |
+| NetAdapter 2 | 00:0C:29:A8:BB:63| ens192       |
+| NetAdapter 3 | 00:0C:29:A8:BB:6D| ens224       |
+| NetAdapter 4 | 00:0C:29:A8:BB:77| ens256       |
 
 <br>
 
@@ -173,7 +173,7 @@ ip -br link
 3. Modify Interface IP
 VMNet2:  192.168.102.6/24
 VMNet3:  11.11.11.100/27
-Bridged: 10.$#34T#.1.6/24
+Bridged: 10.51.1.6/24
 
 
 ~~~
@@ -236,9 +236,9 @@ nmcli connection up BRIDGED
 4. Routing
 ~~~
 !@NetOps-PH
-ip route add 10.0.0.0/8 via 10.51.1.4 dev ens___
-ip route add 200.0.0.0/24 via 10.51.1.4 dev ens___
-ip route add 0.0.0.0/0 via 11.11.11.113 dev ens___
+ip route add 10.0.0.0/8 via 10.51.1.4 dev ens256
+ip route add 200.0.0.0/24 via 10.51.1.4 dev ens256
+ip route add 0.0.0.0/0 via 11.11.11.113 dev ens224
 ~~~
 
 
@@ -431,7 +431,8 @@ BLUE TEAM
 Protect you Network
 Create an extended ACL named FWP3
 Open only the following ports:
-  http, https, ping, ssh, dns
+  http (80), https(443), ping, ssh(22), dns(53)
+
 
 ~~~
 !@UTM-PH
